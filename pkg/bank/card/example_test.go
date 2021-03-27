@@ -108,3 +108,30 @@ func ExampleTotal() {
 	fmt.Println(total)
 	// Output: 330
 }
+
+func ExamplePaymentSources() {
+	var cards []types.Card
+	cards = append(cards, 
+		types.Card {
+			PAN:		"1234 5678 9123 4567 8901",
+			Balance: 	100.0,
+			Active:		false,
+		},
+		types.Card {
+			PAN:		"1234 5678 9123 4567 8902",
+			Balance: 	200.0,
+			Active:		true,
+		},
+		types.Card {
+			PAN:		"1234 5678 9123 4567 8903",
+			Balance: 	0,
+			Active:		true,
+		},
+	)
+
+	result := PaymentSources(cards)
+	for _,ps := range result {
+		fmt.Println(ps.Number)
+	}
+	// Output: 1234 5678 9123 4567 8902
+}
